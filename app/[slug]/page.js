@@ -2,11 +2,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { BlogContext } from '../wrapper'
 import Link from 'next/link'
+import { notFound, redirect } from 'next/navigation'
 
 
 function page({params}) {
   const [title, setTitle] = useState('')
   const [post, setPost] = useState('')
+  const [defined, setDefined] = useState(1)
   const lists = useContext(BlogContext)
  useEffect(()=>{
   setTitle(params.slug)
@@ -15,11 +17,19 @@ function page({params}) {
   useEffect(()=>{
    if(title != ''){
     const newpost= lists.filter(post=>{return(post.title.split(' ').join('-')==title)})
+    if(newpost.length==0){
+      setDefined(0)
+    }
     setPost(newpost[0])
    }
   },[title])
   if(post===''){
     return(<div>Loading...</div>)
+  }
+  if(defined==0){
+    return(
+      notFound()
+    )
   }
   return (
     <div className='post-page'>

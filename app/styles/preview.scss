@@ -26,6 +26,7 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    padding: 2rem 0;
     .info{
         background-color: #333;
         color: white;
@@ -52,6 +53,20 @@
         font-weight: bold;
         &:hover{
             color: #c5a179;
+        }
+    }
+}
+@media screen and (max-width:750px) {
+    .post-info{
+        display: block;
+        .read-time{
+            display: none;
+        }
+        .info{
+            margin-top: 2rem;
+            &.post_author{
+                border-radius: 5px;
+            }
         }
     }
 }
