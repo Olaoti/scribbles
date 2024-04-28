@@ -1,6 +1,6 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react'
-import { BlogContext } from '../layout'
+import { BlogContext } from '../wrapper'
 import Link from 'next/link'
 
 
