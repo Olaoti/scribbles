@@ -1,0 +1,57 @@
+.date-comments{
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    justify-content: center;
+    font-family: Oswald, sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    span{
+        display: block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: #ccc;
+    }
+    p:hover{
+        color: #c5a179;
+    }
+}
+.title{
+    padding: 2rem 0 1rem;
+    text-align: center;
+}
+.post-info{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    .info{
+        background-color: #333;
+        color: white;
+        text-transform: uppercase;
+        font-family: Oswald, sans-serif;
+        line-height: 4.8rem;
+        font-size: 1.8rem;
+        &.read-time{
+            padding: 0 2.5rem 0 6rem;
+            border-radius: 0 5px 5px 0;
+        }
+        &.post_author{
+            padding: 0 6rem 0 2.5rem;
+            border-radius: 5px 0 0 5px;
+            &:hover{
+            color: #c5a179;
+            }
+        }
+    }
+    .show-more{
+        letter-spacing: 1px;
+        font-size: 1.8rem;
+        color: #222 ;
+        font-weight: bold;
+        &:hover{
+            color: #c5a179;
+        }
+    }
+}
