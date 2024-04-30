@@ -40,7 +40,6 @@ function Preview() {
   return ( 
     <div>
         <div className='category-select' onClick={handlefilter}>
-          <p>Category:</p>
           <RoundButton id={''} text={'All'}/>
           <RoundButton id={'poem'} text={'Poem'}/>
           <RoundButton id={'story'} text={'Story'}/>
