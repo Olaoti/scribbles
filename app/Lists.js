@@ -1,7 +1,7 @@
 const Lists = [
         {
             id:1,
-            category:'Poem',
+            category:'poem',
             title:'Test',
             date:'12-02-2024',
             pictures:[],

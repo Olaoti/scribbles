@@ -1,7 +1,8 @@
 'use client'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { BlogContext } from '../wrapper'
 import Link from 'next/link'
+import { RoundButton } from './buttons'
 
 function Preview() {
   const Lists = useContext(BlogContext)
@@ -24,11 +25,30 @@ function Preview() {
     const time = Math.ceil(words / wpm);
     return time
   }
+  const [lists, setLists]=useState()
+
+  const [displaying, setDisplaying] = useState('')
+  const handlefilter = (e) => {
+    setDisplaying(e.target.id);
+  };
+  useEffect(()=>{
+    setLists(Lists?.filter(list=>{
+      return list.category.includes(displaying)
+    }))
+  }, [displaying])
   
-  const [lists, setLists]=useState(Lists)
   return ( 
     <div>
-        {Lists?.map(list=>{
+        <div className='category-select' onClick={handlefilter}>
+          <p>Category:</p>
+          <RoundButton id={''} text={'All'}/>
+          <RoundButton id={'poem'} text={'Poem'}/>
+          <RoundButton id={'story'} text={'Story'}/>
+          <RoundButton id={'art'} text={'Art'}/>
+          <RoundButton id={'scribble'}text={'Uncategorized'}/>
+
+        </div>
+        {lists?.map(list=>{
             return(
                 <div className='post-card wrap center' key={list.id}>
                     <div className='wrap heading'>
@@ -55,8 +75,6 @@ function Preview() {
                         <div className='read-time info'>Reading Time: {readingTime(list.content)} min
                         </div>
                         <div className='show-more'><Link href={`/${list.title.split(' ').join('-')}`}>Continue Reading</Link></div>
-                        <div className='info post_author'>Written BY: Omotola</div>
-
                       </div>
                      
                 </div>

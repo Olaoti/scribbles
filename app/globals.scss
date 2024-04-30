@@ -77,7 +77,7 @@ p{
 }
 @media screen and (max-width:900px) {
     .container{
-        padding: 4rem;
+        padding: 4rem 2rem;
     }
     h2{
         font-size: 3.6rem;
@@ -85,12 +85,12 @@ p{
     p{
         font-size: 1.5rem;
         &.content{
-            padding: 2rem 3rem;
+            padding: 2rem 1.4rem;
         }
     }
     .wrap{
         &.heading{
-            margin: 0 3rem;
+            margin: 0 1.4rem;
         }
     }
 }
