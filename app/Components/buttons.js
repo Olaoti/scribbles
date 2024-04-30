@@ -1,7 +1,7 @@
 export const RoundButton=function({id, text}){
     return(
-        <div id={id}>
+        <button id={id}>
         {text}
-      </div>
+      </button>
     )
 }
