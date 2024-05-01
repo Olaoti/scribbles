@@ -32,7 +32,7 @@ function page({params}) {
     )
   }
   return (
-    <div className='post-page'>
+    <div className='post-page container'>
     <div className='post wrap'>
       <div className='wrap heading'>
       <h5 className='category'>

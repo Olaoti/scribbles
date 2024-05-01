@@ -1,9 +1,10 @@
 'use client'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { BlogContext } from '../wrapper'
 import Link from 'next/link'
 import { RoundButton } from './buttons'
-
+import { SearchContect } from '../wrapper'
+export const DisplayContext = createContext()
 function Preview() {
   const Lists = useContext(BlogContext)
   const truncate = function(text, catey){
@@ -31,27 +32,36 @@ function Preview() {
   const handlefilter = (e) => {
     setDisplaying(e.target.id);
   };
+  const changeCategory=(e)=>{
+    setDisplaying(e)
+  }
   useEffect(()=>{
     setLists(Lists?.filter(list=>{
-      return list.category.includes(displaying)
+      return list.category.includes(displaying)&&list.hide==false
     }))
   }, [displaying])
-  
+  const [search, setSearch] = useContext(SearchContect)
+  useEffect(()=>{
+    setLists(Lists?.filter(list=>{
+      return (list.title.includes(search)||list.content.includes(search))&&list.hide==false
+    }))
+  },[search])
   return ( 
-    <div>
+    <div className='container'>
         <div className='category-select' onClick={handlefilter}>
+          <DisplayContext.Provider value={displaying}>
           <RoundButton id={''} text={'All'}/>
           <RoundButton id={'poem'} text={'Poem'}/>
           <RoundButton id={'story'} text={'Story'}/>
           <RoundButton id={'art'} text={'Art'}/>
           <RoundButton id={'scribble'}text={'Uncategorized'}/>
-
+          </DisplayContext.Provider>
         </div>
         {lists?.map(list=>{
             return(
                 <div className='post-card wrap center' key={list.id}>
                     <div className='wrap heading'>
-                      <h5 className='category'>
+                      <h5 className='category' onClick={()=>changeCategory(list.category)}>
                         {list.category}
                       </h5>
                       <h2 className='title'>
