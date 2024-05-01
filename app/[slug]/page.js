@@ -52,7 +52,7 @@ function page({params}) {
           </p> 
         </div>
     </div>
-    <div className='comment-section'>
+    <div id='comments' className='comment-section'>
       <p>Enter your comments</p>
       <Comments/>
     </div>
