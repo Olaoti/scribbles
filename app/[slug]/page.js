@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { BlogContext } from '../wrapper'
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
+import Comments from '../Components/Comments'
 
 
 function page({params}) {
@@ -51,9 +52,11 @@ function page({params}) {
           </p> 
         </div>
     </div>
-    <div id='comments'>
+    <div className='comment-section'>
       <p>Enter your comments</p>
+      <Comments/>
     </div>
+
     </div>
    
   )

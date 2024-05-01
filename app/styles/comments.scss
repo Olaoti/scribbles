@@ -1,0 +1,29 @@
+.comment-section{
+    margin: 2rem 0;
+
+}
+form{
+    input, textarea{
+        background-color: inherit;
+        border: none;
+        outline: none;
+        width: 100%;
+        box-shadow: 0 0 6px 6px rgba(195, 195, 195, .12);
+        padding: 1rem;
+        background-color: white;
+        resize: none;
+        margin:.8rem 0 1.8rem 0;
+        &#radiobtn{
+            width: fit-content;
+            display: flex;
+        }
+    }
+    label{
+        font-size: 1.6rem;
+        &#savebtn{
+            display: flex;
+        }
+    }
+    
+    
+}
