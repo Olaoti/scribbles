@@ -8,7 +8,7 @@ const Lists = [
             content:'This is a test poem',
             theme:'sad',
             comments:[],
-            hide:true,
+            hide:false,
         },
         {
             id:2,

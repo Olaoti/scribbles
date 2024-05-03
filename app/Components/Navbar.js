@@ -1,16 +1,35 @@
-import React, { useContext, useState } from 'react'
-import { SearchContect } from '../wrapper'
+'use client'
+import React, { useContext, useEffect, useState } from 'react'
+import SearchIcon from "../../public/assets/search.svg"
+import {  useSearchParams, useRouter } from 'next/navigation';
 function Navbar() {
-  const [search, setSearch] = useContext(SearchContect)
   const [inputValue, setInputValue] = useState(''); 
   const handleSearch=(e)=>{
     setInputValue(e.target.value);
-    setSearch(e.target.value)
   }
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+  const [params, setparams] = useState()
+  const sendSearchParam = (e)=>{
+    const params = new URLSearchParams(searchParams);
+    if(e.which==13){
+      if (inputValue) {
+        params.set('s', inputValue);
+      } else {
+        params.delete('s');
+      }
+    replace(`/?${params.toString()}`);
+    setInputValue('')
+    }
+  }
+
+ 
   return (
     <div className='navbar'>
       <div className='logo'>Screeble</div>
-      <div><input id='search' placeholder='Search through' value={inputValue} onChange={handleSearch}/></div>
+      <div className='search'><SearchIcon style={{fill:'white'}} />
+      <input id='search' placeholder='Search and click enter' value={inputValue} onChange={handleSearch} onKeyUp={sendSearchParam}/>
+      </div>
       <div>About me</div>
     </div>
   )

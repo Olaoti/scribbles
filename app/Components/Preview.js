@@ -3,9 +3,10 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import { BlogContext } from '../wrapper'
 import Link from 'next/link'
 import { RoundButton } from './buttons'
-import { SearchContect } from '../wrapper'
+import { useRouter, useSearchParams } from 'next/navigation';
 export const DisplayContext = createContext()
 function Preview() {
+
   const Lists = useContext(BlogContext)
   const truncate = function(text, catey){
     var num = 0;
@@ -20,6 +21,7 @@ function Preview() {
     text.slice(0, num - 1) + '…' : text;
   }
 
+
   const readingTime = function(text) {
     const wpm = 225;
     const words = text.trim().split(/\s+/).length;
@@ -31,21 +33,43 @@ function Preview() {
   const [displaying, setDisplaying] = useState('')
   const handlefilter = (e) => {
     setDisplaying(e.target.id);
+    const params = new URLSearchParams(searchParams);
+    params.delete('s');
+    replace(`/?${params.toString()}`)
   };
   const changeCategory=(e)=>{
     setDisplaying(e)
   }
+  const { replace } = useRouter();
   useEffect(()=>{
     setLists(Lists?.filter(list=>{
       return list.category.includes(displaying)&&list.hide==false
     }))
+   
   }, [displaying])
-  const [search, setSearch] = useContext(SearchContect)
+
+ //search functionality
+ const [search, setSearch] = useState('')
+ const searchParams = useSearchParams()
+  const consumeSearchParams = (e)=>{
+   const params = new URLSearchParams(searchParams);
+   const newparam= params.get('s')
+   if(newparam){
+    setSearch(newparam)
+   }else{
+    setSearch('')
+   }
+  }
   useEffect(()=>{
-    setLists(Lists?.filter(list=>{
-      return (list.title.includes(search)||list.content.includes(search))&&list.hide==false
-    }))
-  },[search])
+   consumeSearchParams()
+  })
+  
+ useEffect(()=>{
+   setLists(Lists?.filter(list=>{
+     return (list.title.includes(search)||list.content.includes(search))&&list.hide==false
+   }))
+ },[search])
+ 
   return ( 
     <div className='container'>
         <div className='category-select' onClick={handlefilter}>
@@ -57,6 +81,12 @@ function Preview() {
           <RoundButton id={'scribble'}text={'Uncategorized'}/>
           </DisplayContext.Provider>
         </div>
+        {lists?.length==0&&(
+            <div className='wrap no-list'><p>
+              Wetin you dey find my nigga????</p>
+              
+              </div>
+        )}
         {lists?.map(list=>{
             return(
                 <div className='post-card wrap center' key={list.id}>

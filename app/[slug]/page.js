@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { BlogContext } from '../wrapper'
 import Link from 'next/link'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import Comments from '../Components/Comments'
 
 
@@ -25,7 +25,12 @@ function page({params}) {
    }
   },[title])
   if(post===''){
-    return(<div>Loading...</div>)
+    return(<div className='loading'>
+      <span></span>
+      <span></span>
+      <p>Loading....</p>
+
+    </div>)
   }
   if(defined==0){
     return(
