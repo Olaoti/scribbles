@@ -39,6 +39,9 @@ function Preview() {
   };
   const changeCategory=(e)=>{
     setDisplaying(e)
+    const params = new URLSearchParams(searchParams);
+    params.delete('s');
+    replace(`/?${params.toString()}`)
   }
   const { replace } = useRouter();
   useEffect(()=>{
