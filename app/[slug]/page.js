@@ -28,7 +28,7 @@ function page({params}) {
     return(<div className='loading'>
       <span></span>
       <span></span>
-      <p>Loading....</p>
+      <p>Loading...</p>
 
     </div>)
   }
