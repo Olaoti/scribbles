@@ -58,7 +58,7 @@ function Preview() {
    const params = new URLSearchParams(searchParams);
    const newparam= params.get('s')
    if(newparam){
-    setSearch(newparam)
+    setSearch(newparam.toLowerCase())
    }else{
     setSearch('')
    }
@@ -69,7 +69,7 @@ function Preview() {
   
  useEffect(()=>{
    setLists(Lists?.filter(list=>{
-     return (list.title.includes(search)||list.content.includes(search))&&list.hide==false
+     return ((list.title).toLowerCase().includes(search)||list.content.toLowerCase().includes(search))&&list.hide==false
    }))
  },[search])
  
