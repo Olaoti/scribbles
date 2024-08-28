@@ -2,15 +2,14 @@
 export const ListsContext = createContext([])
 import Preview from './Components/Preview'
 
-import { createContext } from "react"
-import Lists from "./Lists"
+import { createContext, useEffect, useState } from "react"
+
 
 function Home() {
+  
   return (
     <div className="homepage">
-      <ListsContext.Provider value={Lists}>
         <Preview/>
-      </ListsContext.Provider>
       </div>
   )
 }

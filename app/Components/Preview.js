@@ -5,9 +5,11 @@ import Link from 'next/link'
 import { RoundButton } from './buttons'
 import { useRouter, useSearchParams } from 'next/navigation';
 export const DisplayContext = createContext()
+
 function Preview() {
 
   const Lists = useContext(BlogContext)
+
   const truncate = function(text, catey){
     var num = 0;
     if (catey == 'Poem'){
@@ -29,7 +31,8 @@ function Preview() {
     return time
   }
   const [lists, setLists]=useState()
-
+  const[loading, setLoading] = useState(true)
+ 
   const [displaying, setDisplaying] = useState('')
   const handlefilter = (e) => {
     setDisplaying(e.target.id);
@@ -44,6 +47,14 @@ function Preview() {
     replace(`/?${params.toString()}`)
   }
   const { replace } = useRouter();
+  useEffect(()=>{
+    if(Lists.length>0){
+      setLists(Lists)
+      setLoading(false)
+    }else{
+      setLoading(true)
+    }
+  },[Lists])
   useEffect(()=>{
     setLists(Lists?.filter(list=>{
       return list.category.includes(displaying)&&list.hide==false
@@ -72,7 +83,13 @@ function Preview() {
      return ((list.title).toLowerCase().includes(search)||list.content.toLowerCase().includes(search))&&list.hide==false
    }))
  },[search])
- 
+ if(loading){
+   return(
+    <div className='container loading-spin'>
+      <div className='spinner'></div>
+    </div>
+   )
+ }
   return ( 
     <div className='container'>
         <div className='category-select' onClick={handlefilter}>
@@ -103,15 +120,17 @@ function Preview() {
                         <p>{list.date}</p>
                         <span></span>
                         
-                        <p><Link href={`/${list.title.split(' ').join('-')}/#comments`}>{list.comments.length>0?(`${list.comments.length}comments`):('No comments')} </Link></p>
+                        {/*<p><Link href={`/${list.title.split(' ').join('-')}/#comments`}>{list.comments.length>0?(`${list.comments.length}comments`):('No comments')} </Link></p>*/}
                       </div>
                       </div>
                       <div>
+                      <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
                         <p className='content'>
                         {
                         truncate(list.content,list.category)
                          } 
-                        </p> 
+                          </p> 
+                        </pre>
                       </div>
                       <div className='post-info'>
                         <div className='read-time info'>Reading Time: {readingTime(list.content)} min

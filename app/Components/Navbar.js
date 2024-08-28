@@ -9,7 +9,6 @@ function Navbar() {
   }
   const searchParams = useSearchParams();
   const { replace } = useRouter();
-  const [params, setparams] = useState()
   const sendSearchParam = (e)=>{
     const params = new URLSearchParams(searchParams);
     if(e.which==13){

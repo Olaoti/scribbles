@@ -48,14 +48,17 @@ function page({params}) {
       <div className='date-comments'>
         <p>{post.date}</p>
         <span></span>
-        <p><Link href={`/${title}/#comments`}  scroll={true}>{post.comments.length>0?(`${post.comments.length}comments`):('No comments')} </Link></p>
+        <p><Link href={`/${title}/#comments`}  scroll={true}> </Link></p>
       </div>    
       </div>
       <div>
-          <p className='content'>
+      <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
+        <p className='content'>
           {post.content} 
           </p> 
+      </pre>
         </div>
+       
     </div>
     <div id='comments' className='comment-section'>
       <p>Enter your comments</p>
