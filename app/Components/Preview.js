@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { BlogContext } from '../layout'
+import { BlogContext } from '../wrapper'
 import Link from 'next/link'
 import { RoundButton } from './buttons'
 import { useRouter, useSearchParams } from 'next/navigation';
