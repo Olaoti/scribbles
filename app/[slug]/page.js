@@ -15,7 +15,7 @@ function page({params}) {
  },[params])
 
   useEffect(()=>{
-   if(title != ''){
+   if(title != ''&&lists.length>0){
     const newpost= lists.filter(post=>{return(post.title.split(' ').join('-').toLowerCase()==title.toLowerCase())})
     
     if(newpost.length==0){
@@ -23,7 +23,8 @@ function page({params}) {
     }
     setPost(newpost[0])
    }
-  },[lists])
+  },[lists, title])
+
   if(post===''){
     return(<div className='loading'>
       <span></span>
