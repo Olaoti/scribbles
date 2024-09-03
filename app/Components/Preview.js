@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { BlogContext } from '../wrapper'
+import { BlogContext } from '../layout'
 import Link from 'next/link'
 import { RoundButton } from './buttons'
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -9,7 +9,6 @@ export const DisplayContext = createContext()
 function Preview() {
 
   const Lists = useContext(BlogContext)
-
   const truncate = function(text, catey){
     var num = 0;
     if (catey == 'Poem'){
@@ -49,18 +48,15 @@ function Preview() {
   const { replace } = useRouter();
   useEffect(()=>{
     if(Lists.length>0){
-      setLists(Lists)
+      setLists(Lists?.filter(list=>{
+        return list.category.includes(displaying)&&list.hide==false
+      }))
       setLoading(false)
     }else{
       setLoading(true)
     }
-  },[Lists])
-  useEffect(()=>{
-    setLists(Lists?.filter(list=>{
-      return list.category.includes(displaying)&&list.hide==false
-    }))
-   
-  }, [displaying])
+  },[Lists, displaying])
+
 
  //search functionality
  const [search, setSearch] = useState('')

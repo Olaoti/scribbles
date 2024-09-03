@@ -1,10 +1,9 @@
 'use client'
 import React, { useContext, useEffect, useState } from 'react'
-import { BlogContext } from '../wrapper'
+import { BlogContext } from '../layout'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Comments from '../Components/Comments'
-
 
 function page({params}) {
   const [title, setTitle] = useState('')
@@ -17,13 +16,14 @@ function page({params}) {
 
   useEffect(()=>{
    if(title != ''){
-    const newpost= lists.filter(post=>{return(post.title.split(' ').join('-')==title)})
+    const newpost= lists.filter(post=>{return(post.title.split(' ').join('-').toLowerCase()==title.toLowerCase())})
+    
     if(newpost.length==0){
       setDefined(0)
     }
     setPost(newpost[0])
    }
-  },[title])
+  },[lists])
   if(post===''){
     return(<div className='loading'>
       <span></span>
