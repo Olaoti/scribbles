@@ -15,11 +15,13 @@ form{
         margin:.8rem 0 1.8rem 0;
         &#radiobtn{
             width: fit-content;
-            display: flex;
+            margin-right: 1rem;
         }
+
     }
     label{
-        font-size: 1.6rem;
+        font-size: 1.8rem;
+        font-weight: 400;
         &#savebtn{
             display: flex;
         }

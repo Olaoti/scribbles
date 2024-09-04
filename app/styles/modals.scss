@@ -1,0 +1,25 @@
+.modal{
+    position: fixed;
+    z-index: 3;
+    padding: 2rem;
+    margin: 3rem;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 2rem 8px 0 1rem;
+    transition: all 300ms ease;
+    &.success{
+        background-color: rgb(246, 250, 246);
+        border: 1.5px solid green;
+        h3{
+            color: rgb(12, 141, 12);
+        }
+    }
+    &.error{
+        border: 1.5px solid red;
+        background-color: rgb(252, 246, 246);
+        h3{
+            color: red;
+        }
+    }
+}

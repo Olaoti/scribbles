@@ -22,9 +22,11 @@ const [lists, setLists] = useState([])
       .from("Contents")
       .select("*")
       .limit(10)
+      .order('created_at', { ascending: false })
       if(error) throw error;
       if(data!=null){
         setLists(data);
+        console.log(data)
       }
     } catch (error) {
       console.log(error.message)

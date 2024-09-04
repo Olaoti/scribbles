@@ -43,6 +43,9 @@ h2:hover{
 .post-card{
     margin-bottom: 4rem;
 }
+h3{
+    font-size: 2.8rem;
+}
 h4{
     font-size: 1.7rem;
     font-weight: 400;
@@ -70,6 +73,16 @@ button{
     outline: none;
     border: inherit;
     background: inherit;
+    display: block;
+    font-size: 2rem;
+    background-color: #333;
+    color: white;
+    padding: 1.2rem 2rem;
+    margin: 1rem 0;
+    &:hover{
+        color: #c5a179;
+        cursor: pointer;
+    }
 }
 p{
     font-size: 1.7rem;
@@ -210,3 +223,5 @@ p{
 @import '../app/styles/preview.scss';
 @import '../app/styles/navbar.scss';
 @import '../app/styles/buttons.scss';
+@import '../app/styles/modals.scss';
+

@@ -4,7 +4,7 @@ import { BlogContext } from '../wrapper'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Comments from '../Components/Comments'
-
+import Modal from '../Components/Modal'
 function page({params}) {
   const [title, setTitle] = useState('')
   const [post, setPost] = useState('')
@@ -24,7 +24,6 @@ function page({params}) {
     setPost(newpost[0])
    }
   },[lists, title])
-
   if(post===''){
     return(<div className='loading'>
       <span></span>
@@ -62,8 +61,7 @@ function page({params}) {
        
     </div>
     <div id='comments' className='comment-section'>
-      <p>Enter your comments</p>
-      <Comments/>
+      <Comments id={post.id}/>
     </div>
 
     </div>
