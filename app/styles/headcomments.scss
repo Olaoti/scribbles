@@ -1,0 +1,20 @@
+.headcomments{
+    padding: 2rem;
+    border-bottom: 1px solid $gold ;
+    display: flex;
+    gap: 2rem;
+    .initial{
+        width: 6rem;
+        height: 6rem;
+        color: $gold;
+        font-size: 5rem;
+        border-radius: 50%;
+        background-color: #f8f3ee;
+        display: grid;
+        place-items: center;
+        text-transform: capitalize;
+    }
+    h3,p{
+        text-transform: capitalize;
+    }
+}

@@ -4,10 +4,12 @@ import { BlogContext } from '../wrapper'
 import Link from 'next/link'
 import { RoundButton } from './buttons'
 import { useRouter, useSearchParams } from 'next/navigation';
+import { commentsContext } from '../wrapper'
+
 export const DisplayContext = createContext()
 
 function Preview() {
-
+  const comments = useContext(commentsContext)
   const Lists = useContext(BlogContext)
   const truncate = function(text, catey){
     var num = 0;
@@ -113,10 +115,10 @@ function Preview() {
                       <h2 className='title'>
                       <Link href={`/${list.title.split(' ').join('-')}`}>{list.title}</Link></h2>
                       <div className='date-comments'>
-                        <p>{list.date}</p>
+                        <p>{new Date(list.created_at).toISOString().split('T')[0]}</p>
+                        <p></p>
                         <span></span>
-                        
-                        {/*<p><Link href={`/${list.title.split(' ').join('-')}/#comments`}>{list.comments.length>0?(`${list.comments.length}comments`):('No comments')} </Link></p>*/}
+                        {<p><Link href={`/${list.title.split(' ').join('-')}/#comments`}>{comments.filter(comment=>{return comment.post_id==list.id}).length>0?(`${comments.filter(comment=>{return comment.post_id==list.id}).length} comments`):('No comments')} </Link></p>}
                       </div>
                       </div>
                       <div>

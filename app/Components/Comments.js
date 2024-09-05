@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { createSupabaseClient } from '@/utils/supabase/client'
 import Modal from './Modal'
+import { commentsContext } from '../wrapper'
+import { ChangeContext } from '../wrapper'
 
 function Comments({id}) {
+  const changeset = useContext(ChangeContext)
+const comments=useContext(commentsContext)
+
   const [commentLoading, setCommentLoading]=useState()
   const [modalOpened, setModal] = useState(false)
   const [type, setType] = useState('success')
@@ -11,7 +16,6 @@ function Comments({id}) {
   const [name, setName] = useState('')
   const [mail, setMail] = useState('')
   const [comment, setComment] = useState('')
-  const [postId, setPostId] = useState(null)
   const [replyTo, setReplyTo] = useState(null)
   const supabase = createSupabaseClient();
   function displaModal(){
@@ -22,13 +26,12 @@ function Comments({id}) {
 
   const submitForm = async(e)=>{
     setCommentLoading(true)
-    setPostId(id)
     e.preventDefault()
     const { data, error } = await supabase
       .from('Commentsection')
       .insert([
         {
-          post_id: postId,
+          post_id: id,
           username:name,
           mail:mail,
           payload:comment,
@@ -39,12 +42,14 @@ function Comments({id}) {
         window.alert(error?.message);
       }
       else{
+      changeset.setChange(true)
       setCommentLoading(false)
       setModal(true)
       displaModal()
       setName('')
       setMail('')
       setComment('')
+      
     }
   }
   return (

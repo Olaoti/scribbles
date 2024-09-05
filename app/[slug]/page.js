@@ -3,13 +3,26 @@ import React, { useContext, useEffect, useState } from 'react'
 import { BlogContext } from '../wrapper'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import Comments from '../Components/Comments'
+import Commentsection from '../Components/Comments'
+import { commentsContext } from '../wrapper'
+import HeadComments from '../Components/HeadComments'
+import { ChangeContext } from '../wrapper'
 import Modal from '../Components/Modal'
 function page({params}) {
+  const changeset = useContext(ChangeContext)
+  const lists = useContext(BlogContext)
+  const commentsList = useContext(commentsContext)
+  const [Comments, setComments] = useState(commentsList)
+  
+  useEffect(()=>{
+    setComments(commentsList)
+    console.log(commentsList)
+    changeset.setChange(false)
+  },[commentsList, changeset])
+
   const [title, setTitle] = useState('')
   const [post, setPost] = useState('')
   const [defined, setDefined] = useState(1)
-  const lists = useContext(BlogContext)
  useEffect(()=>{
   setTitle(params.slug)
  },[params])
@@ -46,9 +59,9 @@ function page({params}) {
       </h5>
       <h2 className='title'>{post.title}</h2>
       <div className='date-comments'>
-        <p>{post.date}</p>
+      <p>{new Date(post.created_at).toISOString().split('T')[0]}</p>
         <span></span>
-        <p><Link href={`/${title}/#comments`}  scroll={true}> </Link></p>
+        <p><Link href={`/${title}/#comments`}  scroll={true}>{Comments.filter(comment=>{return comment.post_id==post.id}).length>0?(`${Comments.filter(comment=>{return comment.post_id==post.id}).length} comments`):('No comments')} </Link></p>
       </div>    
       </div>
       <div>
@@ -60,8 +73,18 @@ function page({params}) {
         </div>
        
     </div>
+ 
     <div id='comments' className='comment-section'>
-      <Comments id={post.id}/>
+    <div className='comments-view'>
+        {Comments?.filter(comment=>comment.post_id==post.id).map(comment=>{
+          return(
+            <div key={comment.id}>
+            {<HeadComments payload={comment.payload} username={comment.username}/>}
+            </div>
+          )
+        })}
+       </div>
+      <Commentsection id={post.id}/>
     </div>
 
     </div>

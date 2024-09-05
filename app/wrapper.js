@@ -6,16 +6,24 @@ import { createSupabaseClient } from '../utils/supabase/client'
 export const BlogContext = createContext({
   lists: []
 });
-export const SearchContect = createContext()
 
+export const commentsContext = createContext();
+export const ChangeContext = createContext({
+  change: false, setChange:null
+});
 export default function Wrapper({ children }) {
 
   const supabase = createSupabaseClient();
-const [search, setSearch] = useState('')
+const [comments, setComments] = useState([])
 const [lists, setLists] = useState([])
+const [change, setChange] = useState(false)
   useEffect(()=>{
-    getContents()
+    getContents(),
+    getComments()
   },[])
+  useEffect(()=>{
+    getComments()
+  },[change])
   async function getContents(){
     try {
       const {data, error} = await supabase 
@@ -26,7 +34,21 @@ const [lists, setLists] = useState([])
       if(error) throw error;
       if(data!=null){
         setLists(data);
-        console.log(data)
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+  async function getComments(){
+    try {
+      const {data, error} = await supabase 
+      .from("Commentsection")
+      .select("*")
+      .limit(1000)
+      .order('created_at', { ascending: true })
+      if(error) throw error;
+      if(data!=null){
+        setComments(data);
       }
     } catch (error) {
       console.log(error.message)
@@ -34,12 +56,13 @@ const [lists, setLists] = useState([])
   }
   return (
     <BlogContext.Provider value={lists}>
-      <SearchContect.Provider value={[search, setSearch]}>
+      <commentsContext.Provider value={comments}>
+        <ChangeContext.Provider value={{change, setChange}}>
     <Navbar/>
 
     {children}
-
-      </SearchContect.Provider>
+    </ChangeContext.Provider>
+      </commentsContext.Provider>
     </BlogContext.Provider>
 
     )
