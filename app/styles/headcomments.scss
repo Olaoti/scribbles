@@ -13,8 +13,12 @@
         display: grid;
         place-items: center;
         text-transform: capitalize;
-    }
-    h3,p{
+    }h3{
         text-transform: capitalize;
+    }
+    p{
+        ::first-letter{
+            text-transform: capitalize;
+        }
     }
 }
