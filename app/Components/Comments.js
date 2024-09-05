@@ -10,8 +10,8 @@ const comments=useContext(commentsContext)
 
   const [commentLoading, setCommentLoading]=useState()
   const [modalOpened, setModal] = useState(false)
-  const [type, setType] = useState('success')
-  const [msg, setMsg] = useState('Comment sent successfully!')
+  const [type, setType] = useState('')
+  const [msg, setMsg] = useState('')
 
   const [name, setName] = useState('')
   const [mail, setMail] = useState('')
@@ -23,10 +23,20 @@ const comments=useContext(commentsContext)
       setModal(false)
     },4000)
   }
+  const submitTrigger= async(e)=>{
+    e.preventDefault()
+    if(name.length<3||comment.length<3){
+      setType('error')
+      setMsg('Your comment or name should not be empty, haba!')
+      setModal(true)
+      displaModal()
+    }else{
+      submitForm()
+    }
+  }
 
   const submitForm = async(e)=>{
     setCommentLoading(true)
-    e.preventDefault()
     const { data, error } = await supabase
       .from('Commentsection')
       .insert([
@@ -39,24 +49,25 @@ const comments=useContext(commentsContext)
         },
       ]);
       if(error){
-        window.alert(error?.message);
+        console.log(error?.message);
       }
       else{
       changeset.setChange(true)
       setCommentLoading(false)
+      setType('success')
+      setMsg('Comment sent successfully!')
       setModal(true)
       displaModal()
       setName('')
       setMail('')
       setComment('')
-      
     }
   }
   return (
     <div className='comnments'>
       {modalOpened&&<Modal type={type} msg={msg}/>}
       <h4>Enjoyed this? Drop a comment!</h4>
-        <form onSubmit={submitForm}>
+        <form onSubmit={submitTrigger}>
             <textarea id='comment' name='comment' rows={10} onChange={(e) => setComment(e.target.value)} value={comment}/>
             <label>Name</label>
             <input type='text' name='name' id='name' onChange={(e) => setName(e.target.value)} value={name}/>
