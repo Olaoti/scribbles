@@ -61,8 +61,10 @@ const comments=useContext(commentsContext)
       setMsg('Comment sent successfully!')
       setModal(true)
       displaModal()
-      setName('')
-      setMail('')
+      if(saveVal==false){
+        setName('')
+        setMail('')
+      }
       setComment('')
       isReply.setReply(false)
     }
