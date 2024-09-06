@@ -13,13 +13,18 @@
         border-radius: 50%;
         background-color: #ccc;
     }
-    p:hover{
-        color: #c5a179;
+    p{
+        font-family: 'Oswald';
+        font-weight: 300;
+        &:hover{
+            color: #c5a179;
+        }
     }
 }
 .title{
     padding: 2rem 0 1rem;
     text-align: center;
+    
 }
 .post-info{
     display: flex;

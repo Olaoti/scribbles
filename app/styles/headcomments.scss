@@ -1,8 +1,9 @@
-.headcomments{
-    padding: 2rem;
+.comments-sect{
+    padding: 2rem 1rem .4rem;
     border-bottom: 1px solid $gold ;
-    display: flex;
-    gap: 2rem;
+    h3{
+        text-transform: capitalize;
+    }
     .initial{
         width: 6rem;
         height: 6rem;
@@ -13,12 +14,69 @@
         display: grid;
         place-items: center;
         text-transform: capitalize;
-    }h3{
-        text-transform: capitalize;
     }
     p{
+        font-size: 1.5rem;
+        line-height: 170%;
+        font-family: 'Poppins';
         ::first-letter{
             text-transform: capitalize;
+        }
+    }
+    .reply-date{
+        display: flex;
+        gap: 1.6rem;
+        margin-top: 1rem;
+        p{
+        font-size: 1.2rem;
+        font-family: 'Raleway';
+        letter-spacing: .15rem;
+        font-weight: 600;
+        color: #8e8d8d;
+        &:last-child{
+            cursor: pointer;
+            user-select: none;
+        }
+    }
+}
+    .headcomments{
+        display: flex;
+        gap: 2rem;    
+    }
+    .childComment{
+        margin-left: 2rem;
+        display: flex;
+        gap: 2rem;  
+        padding-top: 2rem;
+        border-top: 1px solid #f7e7c6; 
+        .initial{
+            width: 5rem;
+            height: 5rem;
+            color: $gold;
+            font-size: 4rem;
+            border-radius: 50%;
+            background-color: #f8f3ee;
+            display: grid;
+            place-items: center;
+            text-transform: capitalize;
+        }
+        .reply_to{
+            font-size: 1rem;
+            
+        } 
+        h3{
+            font-size: 2.4rem;
+        }
+    }
+}
+@media screen and (max-width:500px) {
+    .headcomments{
+        gap: 1rem;
+        .initial{
+            width: fit-content;
+            height: fit-content;
+            font-size: 5rem;
+            background-color: transparent;
         }
     }
 }

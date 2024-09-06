@@ -3,8 +3,10 @@ import { createSupabaseClient } from '@/utils/supabase/client'
 import Modal from './Modal'
 import { commentsContext } from '../wrapper'
 import { ChangeContext } from '../wrapper'
+import { ReplyContext } from '../[slug]/page'
 
-function Comments({id}) {
+function Comments({id,replyTo,parentId}) {
+  const isReply= useContext(ReplyContext)
   const changeset = useContext(ChangeContext)
 const comments=useContext(commentsContext)
 
@@ -16,7 +18,6 @@ const comments=useContext(commentsContext)
   const [name, setName] = useState('')
   const [mail, setMail] = useState('')
   const [comment, setComment] = useState('')
-  const [replyTo, setReplyTo] = useState(null)
   const supabase = createSupabaseClient();
   function displaModal(){
     setTimeout(()=>{
@@ -25,9 +26,9 @@ const comments=useContext(commentsContext)
   }
   const submitTrigger= async(e)=>{
     e.preventDefault()
-    if(name.length<3||comment.length<3){
+    if(name.length<2||comment.length<3||mail.length<8){
       setType('error')
-      setMsg('Your comment or name should not be empty, haba!')
+      setMsg('Your comment, mail or name should not be empty, haba!')
       setModal(true)
       displaModal()
     }else{
@@ -45,6 +46,7 @@ const comments=useContext(commentsContext)
           username:name,
           mail:mail,
           payload:comment,
+          parent_id:parentId,
           reply_to:replyTo
         },
       ]);
@@ -61,12 +63,12 @@ const comments=useContext(commentsContext)
       setName('')
       setMail('')
       setComment('')
+      isReply.setReply(false)
     }
   }
   return (
     <div className='comnments'>
       {modalOpened&&<Modal type={type} msg={msg}/>}
-      <h4>Enjoyed this? Drop a comment!</h4>
         <form onSubmit={submitTrigger}>
             <textarea id='comment' name='comment' rows={10} onChange={(e) => setComment(e.target.value)} value={comment}/>
             <label>Name</label>
@@ -74,7 +76,17 @@ const comments=useContext(commentsContext)
             <label>Mail</label>
             <input type='email' name='mail' id='mail' onChange={(e) => setMail(e.target.value)} value={mail}/>
             <label id='savelabel'><input type='checkbox' name='savename' id='radiobtn' /><span>Save my name and email in this browser for the next time I comment.</span></label>
-            <button>{commentLoading?('Loading...'):('Send a Comment!')}</button>
+            {commentLoading?(
+              
+              <button disabled>Loading...</button>
+            ):(
+            isReply.reply?(
+                          
+              <button>{commentLoading?('Loading...'):('Send a Reply!')}</button>
+            ):(<button>{commentLoading?('Loading...'):('Send a Comment!')}</button>)
+
+            )}
+           
         </form>
     </div>
   )
