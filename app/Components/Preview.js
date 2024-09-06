@@ -13,8 +13,8 @@ function Preview() {
   const Lists = useContext(BlogContext)
   const truncate = function(text, catey){
     var num = 0;
-    if (catey == 'Poem'){
-      num=80
+    if (catey == 'poem'){
+      num=320
     }else{
       num=700
     }
