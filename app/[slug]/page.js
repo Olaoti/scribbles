@@ -31,7 +31,6 @@ function page({params}) {
   }
 
   
-
   const [title, setTitle] = useState('')
   const [post, setPost] = useState('')
   const [defined, setDefined] = useState(1)
@@ -50,9 +49,12 @@ function page({params}) {
    }
   },[lists, title])
   useEffect(()=>{
-    setComments(commentsList.filter(comment=>comment.post_id==post.id))
+    if(commentsList.length>0){
+      setComments(commentsList.filter(comment=>comment.post_id==post.id))
+    }
+
     changeset.setChange(false)
-  },[commentsList, changeset])
+  },[commentsList, changeset, post])
 
 
   if(post===''){
@@ -130,20 +132,20 @@ function page({params}) {
               <div className='comments-sect'>
                 <div className='headcomments'>
                   <div className='initial'>
-                    {comment.username.slice(0,1)}
+                    {comment?.username.slice(0,1)}
                   </div>
                 <div>
                   <h3>{comment.username}</h3>
                     <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
-                    <p>{comment.payload}</p>
+                    <p>{comment?.payload}</p>
                     </pre>
                     <div className='reply-date'>
-                      <p>{timeDifference(comment.created_at)}</p>
+                      <p>{timeDifference(comment?.created_at)}</p>
                       <p onClick={()=>writeComment(comment)}>Reply</p>
                     </div>
                     </div>
                   </div>
-                  {Comments.filter(childcomment=>childcomment.parent_id==comment.id).map(childcomment=>{
+                  {Comments?.filter(childcomment=>childcomment.parent_id==comment.id).map(childcomment=>{
                     return(
                       <div className='childComment' key={childcomment.id}> <div className='initial'>
                       {childcomment.username.slice(0,1)}
