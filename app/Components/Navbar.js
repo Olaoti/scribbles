@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import SearchIcon from "../../public/assets/search.svg"
 import {  useSearchParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 function Navbar() {
   const [inputValue, setInputValue] = useState(''); 
   const handleSearch=(e)=>{
@@ -25,11 +26,16 @@ function Navbar() {
  
   return (
     <div className='navbar'>
-      <div className='logo'>Screeble</div>
+      <Link href='/'>
+      <div className='logo'>Screebles</div>
+      </Link>
       <div className='search'><SearchIcon style={{fill:'white'}} />
       <input id='search' placeholder='Search and click enter' value={inputValue} onChange={handleSearch} onKeyUp={sendSearchParam}/>
       </div>
+      <Link href='/about-me'>
       <div>About me</div>
+      </Link>
+    
     </div>
   )
 }
