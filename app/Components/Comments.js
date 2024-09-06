@@ -14,6 +14,7 @@ const comments=useContext(commentsContext)
   const [modalOpened, setModal] = useState(false)
   const [type, setType] = useState('')
   const [msg, setMsg] = useState('')
+  const [saveVal, setSaveVal] = useState(false)
 
   const [name, setName] = useState('')
   const [mail, setMail] = useState('')
@@ -66,6 +67,28 @@ const comments=useContext(commentsContext)
       isReply.setReply(false)
     }
   }
+  useEffect(()=>{
+    if(saveVal===true){
+      localStorage.setItem('mail', JSON.stringify(mail));
+      localStorage.setItem('username', JSON.stringify(name));
+      localStorage.setItem('saveval', JSON.stringify(saveVal));
+    }   
+  },[saveVal,mail, name])
+  useEffect(() => {
+    const mailval = JSON.parse(localStorage.getItem('mail'));
+    const nameval = JSON.parse(localStorage.getItem('username'));
+    const saveval = JSON.parse(localStorage.getItem('saveval'));
+    if (saveval==true) {
+     setMail(mailval);
+     setName(nameval)
+     setSaveVal(saveval)
+    }else if(saveval==false){
+      setMail('');
+      setName('')
+      setSaveVal(saveval)
+    }
+  }, []);
+  
   return (
     <div className='comnments'>
       {modalOpened&&<Modal type={type} msg={msg}/>}
@@ -75,7 +98,7 @@ const comments=useContext(commentsContext)
             <input type='text' name='name' id='name' onChange={(e) => setName(e.target.value)} value={name}/>
             <label>Mail</label>
             <input type='email' name='mail' id='mail' onChange={(e) => setMail(e.target.value)} value={mail}/>
-            <label id='savelabel'><input type='checkbox' name='savename' id='radiobtn' /><span>Save my name and email in this browser for the next time I comment.</span></label>
+            <label id='savelabel'><input type='checkbox' name='savename' id='radiobtn' onChange={(e)=>setSaveVal(e.target.checked)} checked={saveVal} /><span>Save my name and email in this browser for the next time I comment.</span></label>
             {commentLoading?(
               
               <button disabled>Loading...</button>

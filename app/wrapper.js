@@ -29,7 +29,6 @@ const [change, setChange] = useState(false)
       const {data, error} = await supabase 
       .from("Contents")
       .select("*")
-      .limit(10)
       .order('created_at', { ascending: false })
       if(error) throw error;
       if(data!=null){

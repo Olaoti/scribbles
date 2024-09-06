@@ -52,7 +52,6 @@ function page({params}) {
   useEffect(()=>{
     setComments(commentsList.filter(comment=>comment.post_id==post.id))
     changeset.setChange(false)
-    console.log(Comments)
   },[commentsList, changeset])
 
 
@@ -146,7 +145,7 @@ function page({params}) {
                   </div>
                   {Comments.filter(childcomment=>childcomment.parent_id==comment.id).map(childcomment=>{
                     return(
-                      <div className='childComment'> <div className='initial'>
+                      <div className='childComment' key={childcomment.id}> <div className='initial'>
                       {childcomment.username.slice(0,1)}
                     </div>
                   <div>
