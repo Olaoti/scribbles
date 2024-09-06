@@ -5,9 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Commentsection from '../Components/Comments'
 import { commentsContext } from '../wrapper'
-import HeadComments from '../Components/HeadComments'
 import { ChangeContext } from '../wrapper'
-import Modal from '../Components/Modal'
 export const ReplyContext = createContext();
 function page({params}) {
   const changeset = useContext(ChangeContext)

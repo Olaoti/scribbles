@@ -14,11 +14,9 @@ function Preview() {
   const truncate = function(text, catey){
     var num = 0;
     if (catey == 'Poem'){
-      num=100
-    }else if(catey=='art'){
-      num=400
+      num=80
     }else{
-      num=1200
+      num=700
     }
     return (text.length > num) ?
     text.slice(0, num - 1) + '…' : text;
@@ -95,7 +93,7 @@ function Preview() {
           <RoundButton id={''} text={'All'}/>
           <RoundButton id={'poem'} text={'Poem'}/>
           <RoundButton id={'story'} text={'Story'}/>
-          <RoundButton id={'art'} text={'Art'}/>
+          <RoundButton id={'tech'} text={'Tech'}/>
           <RoundButton id={'scribble'}text={'Uncategorized'}/>
           </DisplayContext.Provider>
         </div>
