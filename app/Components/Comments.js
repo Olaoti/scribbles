@@ -1,14 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { createSupabaseClient } from '@/utils/supabase/client'
 import Modal from './Modal'
-import { commentsContext } from '../wrapper'
 import { ChangeContext } from '../wrapper'
 import { ReplyContext } from '../[slug]/page'
 
 function Comments({id,replyTo,parentId}) {
   const isReply= useContext(ReplyContext)
   const changeset = useContext(ChangeContext)
-const comments=useContext(commentsContext)
 
   const [commentLoading, setCommentLoading]=useState()
   const [modalOpened, setModal] = useState(false)

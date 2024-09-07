@@ -1,0 +1,21 @@
+.about-me{
+    .wrap{
+        padding:1rem 6rem;
+        p{
+            padding-top: 1rem;
+        }
+        h2{
+            margin-top: 2rem;
+            &:hover{
+                color: #333;
+            }
+        }
+    }
+}
+@media screen and (max-width:550px) {
+    .about-me{
+        .wrap{
+            padding: 1rem 2rem;
+        }
+    }
+}

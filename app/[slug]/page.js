@@ -54,6 +54,19 @@ function page({params}) {
     changeset.setChange(false)
   },[commentsList, changeset, post])
 
+  const [randomPosts, setRandomPosts] = useState([]);
+
+  useEffect(() => {
+    if (lists && lists.length > 0) {
+      const newlist = lists.filter((list)=>{
+        return list.hide==false
+      })
+      const shuffledPosts = [...newlist].sort(() => 0.5 - Math.random());
+      const selectedPosts = shuffledPosts.slice(0, 3);
+      setRandomPosts(selectedPosts);
+    }
+  }, [lists]);
+
 
   if(post===''){
     return(<div className='loading'>
@@ -68,6 +81,8 @@ function page({params}) {
       notFound()
     )
   }
+
+
 
   //Comment time
   const timeDifference = (commentTime) => {
@@ -96,6 +111,12 @@ function page({params}) {
   }
   };
 
+  const formatRandomDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  };
+  
 
   return (
     <div className='post-page container'>
@@ -106,7 +127,7 @@ function page({params}) {
       </h5>
       <h2 className='title'>{post.title}</h2>
       <div className='date-comments'>
-      <p>{new Date(post.created_at).toISOString().split('T')[0]}</p>
+      <p>{formatRandomDate(post.created_at)}</p>
         <span></span>
         <p><Link href={`/${title}/#comments`}  scroll={true}>{Comments.filter(comment=>{return comment.post_id==post.id}).length>0?(`${Comments.filter(comment=>{return comment.post_id==post.id}).length} comments`):('No comments')} </Link></p>
       </div>    
@@ -119,6 +140,20 @@ function page({params}) {
       </pre>
         </div>
        
+    </div>
+    
+    <div className='random-posts'>
+      <h4>Related Posts</h4>
+    <div className='random-posts-sect'>
+      {randomPosts.map((post, index) => (
+        <div key={index} className='box'>
+           <h5><Link href={`/${post.title.split(' ').join('-')}`}>{post.title}</Link>
+          </h5>
+          <p>{formatRandomDate(post.created_at)}</p>
+        </div>
+      ))}
+    </div>
+
     </div>
  
     <div id='comments' className='comment-section'>
@@ -183,7 +218,6 @@ function page({params}) {
        </div>)}
        </ReplyContext.Provider>
       
-       
     </div>
 
     </div>

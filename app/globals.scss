@@ -112,6 +112,9 @@ p{
         left: 0;
     }
 }
+
+
+
 @media screen and (max-width:500px) {
     .commentSection{
         &.replying{
@@ -156,6 +159,49 @@ p{
             animation-duration: 3s;
             animation-iteration-count: infinite;
             animation-direction: alternate;
+        }
+    }
+}
+.random-posts{
+    h4{
+        margin: 4rem auto;
+        font-size: 2.6rem;
+        text-align: center;
+        font-family: 'Oswald';
+    }
+    &-sect{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.4rem;
+        text-align: center;
+        .box{
+            box-shadow: 0 0 6px 6px rgba(195, 195, 195, .12);
+            padding: 2rem 0;
+            background-color: white;
+        }
+        h5{
+            color: black;
+            font-weight: 600;
+            font-size: 1.8rem;
+            font-family: 'Oswald';
+            text-transform: capitalize;
+            &:hover{
+                color: #c5a179;
+            }
+        }
+        p{
+            color: #9a9999;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-family: 'Raleway';
+            font-weight: 600;
+        }
+    }
+}
+@media screen and (max-width:720px) {
+    .random-posts{
+        &-sect{
+            grid-template-columns: 1fr;
         }
     }
 }
@@ -248,5 +294,7 @@ p{
 @import '../app/styles/buttons.scss';
 @import '../app/styles/modals.scss';
 @import '../app/styles/headcomments.scss';
+@import '../app/styles/about-me.scss';
+
 
 
