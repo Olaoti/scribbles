@@ -29,6 +29,9 @@ body{
 .container{
     padding: 4rem 12rem;
 }
+.children{
+    min-height: 90vh;
+}
 h2{
     color: #333;
     font-size: 4.4rem;
@@ -295,6 +298,4 @@ p{
 @import '../app/styles/modals.scss';
 @import '../app/styles/headcomments.scss';
 @import '../app/styles/about-me.scss';
-
-
-
+@import '../app/styles/footer.scss';

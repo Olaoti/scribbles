@@ -2,6 +2,7 @@ import './globals.scss'
 import { Inter } from 'next/font/google'
 import Wrapper from './wrapper'
 
+
 const inter = Inter({ subsets: ['latin']})
 
 export const metadata = {

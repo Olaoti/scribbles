@@ -2,6 +2,7 @@
 import Navbar from './Components/Navbar'
 import { createContext , useState, useEffect} from 'react'
 import { createSupabaseClient } from '../utils/supabase/client'
+import Footers from './Components/Footers'
 
 export const BlogContext = createContext({
   lists: []
@@ -58,8 +59,11 @@ const [change, setChange] = useState(false)
       <commentsContext.Provider value={comments}>
         <ChangeContext.Provider value={{change, setChange}}>
     <Navbar/>
-
+    <div className='children'>
     {children}
+
+    </div>
+    <Footers/>
     </ChangeContext.Provider>
       </commentsContext.Provider>
     </BlogContext.Provider>

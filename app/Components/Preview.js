@@ -94,14 +94,14 @@ function Preview() {
           <RoundButton id={'poem'} text={'Poem'}/>
           <RoundButton id={'story'} text={'Story'}/>
           <RoundButton id={'tech'} text={'Tech'}/>
-          <RoundButton id={'scribble'}text={'Uncategorized'}/>
+          <RoundButton id={'uncategorized'}text={'Uncategorized'}/>
           </DisplayContext.Provider>
         </div>
         {lists?.length==0&&(
             <div className='wrap no-list'><p>
-              Wetin you dey find my nigga????</p>
-              
-              </div>
+                Empty list ! Your searchword is not here!
+              </p>
+            </div>
         )}
         {lists?.map(list=>{
             return(
