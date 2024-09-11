@@ -6,7 +6,7 @@ function Footers() {
     <div className='footer'>
       <div className='footer__section'>
         <div className='info'>
-          <h3>Screebles...</h3>
+          <h3>Scree<span>bles...</span></h3>
           <p>Screebles is a collection of short stories, poems, tech articles and few uncategorized write-ups.</p>
         </div>
         <div className='links'> 

@@ -7,6 +7,12 @@
         width: 100%;
         text-align: center;
     }
+    h3{
+        font-family: 'Oswald';
+        span{
+            color: $gold;
+        }
+    }
     p{
         font-size: 1.3rem;
         color: white;
