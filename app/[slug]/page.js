@@ -127,7 +127,7 @@ function page({params}) {
       </h5>
       <h2 className='title'>{post.title}</h2>
       <div className='date-comments'>
-      <p>{formatRandomDate(post.created_at)}</p>
+      <p className='date'>{formatRandomDate(post.created_at)}</p>
         <span></span>
         <p><Link href={`/${title}/#comments`}  scroll={true}>{Comments.filter(comment=>{return comment.post_id==post.id}).length>0?(`${Comments.filter(comment=>{return comment.post_id==post.id}).length} comments`):('No comments')} </Link></p>
       </div>    
@@ -146,11 +146,13 @@ function page({params}) {
       <h4>Related Posts</h4>
     <div className='random-posts-sect'>
       {randomPosts.map((post, index) => (
-        <div key={index} className='box'>
-           <h5><Link href={`/${post.title.split(' ').join('-')}`}>{post.title}</Link>
+        <Link key={index} href={`/${post.title.split(' ').join('-')}`}>
+        <div className='box'>
+           <h5>{post.title}
           </h5>
           <p>{formatRandomDate(post.created_at)}</p>
         </div>
+        </Link>
       ))}
     </div>
 

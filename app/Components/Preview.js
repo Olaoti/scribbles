@@ -21,6 +21,11 @@ function Preview() {
     return (text.length > num) ?
     text.slice(0, num - 1) + '…' : text;
   }
+  const formatRandomDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  };
 
 
   const readingTime = function(text) {
@@ -113,7 +118,7 @@ function Preview() {
                       <h2 className='title'>
                       <Link href={`/${list.title.split(' ').join('-')}`}>{list.title}</Link></h2>
                       <div className='date-comments'>
-                        <p>{new Date(list.created_at).toISOString().split('T')[0]}</p>
+                      <p className='date'>{formatRandomDate(list.created_at)}</p>
                         <p></p>
                         <span></span>
                         {<p><Link href={`/${list.title.split(' ').join('-')}/#comments`}>{comments.filter(comment=>{return comment.post_id==list.id}).length>0?(`${comments.filter(comment=>{return comment.post_id==list.id}).length} comments`):('No comments')} </Link></p>}

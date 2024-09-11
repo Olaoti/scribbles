@@ -19,6 +19,11 @@
         &:hover{
             color: #c5a179;
         }
+        &.date{
+            &:hover{
+                color: inherit;
+            }
+        }
     }
 }
 .title{

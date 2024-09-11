@@ -27,13 +27,13 @@ function Navbar() {
   return (
     <div className='navbar'>
       <Link href='/'>
-      <div className='logo'>Screebles</div>
+      <div className='logo'>Scree<span>bles</span></div>
       </Link>
       <div className='search'><SearchIcon style={{fill:'white'}} />
       <input id='search' placeholder='Search and click enter' value={inputValue} onChange={handleSearch} onKeyUp={sendSearchParam}/>
       </div>
       <Link href='/about-me'>
-      <div>About me</div>
+      <div className='about-me'>About me</div>
       </Link>
     
     </div>
