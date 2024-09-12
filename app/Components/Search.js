@@ -24,7 +24,6 @@ function page({params}) {
       .limit(10)
       if(error) throw error;
       if(data!=null){
-        console.log(data)
         setists(data);
         posts.setLists(data);
       }

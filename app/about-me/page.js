@@ -1,14 +1,13 @@
 'use client'
 import React, {useEffect, useState} from 'react'
 import Modal from '../Components/Modal'
-import { useForm, ValidationError, reset} from '@formspree/react';
-
+import { useForm, ValidationError} from '@formspree/react';
 function page() {
   const [name, setName] = useState('')
   const [mail, setMail] = useState('')
   const [message, setMessage] = useState('')
   const [subject, setSubject] = useState('')
-  const [state, handleSubmit] = useForm("movazqbl");
+  const [state, handleSubmit] = useForm("xkgwarjz");
   const [submitted, setSubmitted] = useState(false)
 useEffect(()=>{
   if(state.succeeded){

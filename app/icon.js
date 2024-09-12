@@ -1,6 +1,5 @@
 import { ImageResponse } from 'next/server'
  
-// Image metadata
 export const size = {
   width: 32,
   height: 32,
