@@ -192,7 +192,7 @@ function page({params}) {
                       <p>{childcomment.payload}</p>
                       </pre>
                       <div className='reply-date'>
-                        <p>{timeDifference(comment.created_at)}</p>
+                        <p>{timeDifference(childcomment.created_at)}</p>
                         <p onClick={()=>writeComment(childcomment)}>Reply</p>
                       </div>
                       </div>
