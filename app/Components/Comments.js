@@ -25,7 +25,7 @@ function Comments({id,replyTo,parentId}) {
   }
   const submitTrigger= async(e)=>{
     e.preventDefault()
-    if(name.length<2||comment.length<3||mail.length<8){
+    if(name.length<2||comment.length<1){
       setType('error')
       setMsg('Your comment, mail or name should not be empty, haba!')
       setModal(true)
@@ -96,7 +96,7 @@ function Comments({id,replyTo,parentId}) {
             <textarea id='comment' name='comment' rows={10} onChange={(e) => setComment(e.target.value)} value={comment}/>
             <label>Name</label>
             <input type='text' name='name' id='name' onChange={(e) => setName(e.target.value)} value={name}/>
-            <label>Mail</label>
+            <label>Mail <span className='optional'>(Optional)</span></label>
             <input type='email' name='mail' id='mail' onChange={(e) => setMail(e.target.value)} value={mail}/>
             <label id='savelabel'><input type='checkbox' name='savename' id='radiobtn' onChange={(e)=>setSaveVal(e.target.checked)} checked={saveVal} /><span>Save my name and email in this browser for the next time I comment.</span></label>
             {commentLoading?(
