@@ -1,6 +1,6 @@
 .footer{
-    background-color: black;
-    color: white;
+    background-color: $black;
+    color: $white;
     .small-info{
         font-size: 1.2rem;
         padding: 0 2rem 2rem;
@@ -15,7 +15,7 @@
     }
     p{
         font-size: 1.3rem;
-        color: white;
+        color: $white;
         margin-top: 1rem;
     }
     h4{
@@ -32,7 +32,7 @@
         }
         .links{
             p:hover{
-                color:#c5a179;
+                color:$gold;
             }
         }
     }

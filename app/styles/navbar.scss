@@ -3,7 +3,7 @@
     width: 100%;
     justify-content: space-between;
     background-color: #222222;
-    color: white;
+    color: $white;
     padding: 2rem 6rem;
     font-size: 1.6rem;
     align-items: center;
@@ -11,13 +11,13 @@
         font-family: 'Oswald';
         font-size: 2.4rem;
         span{
-            color: #c5a179;
+            color: $gold;
         }
     }
     .search{
         display: flex;
         align-items: center;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid $white;
     }
     #search{
         width: 50vw;
@@ -26,7 +26,7 @@
         background-color: transparent;
         outline: none;
         border: none;
-        color: white;
+        color: $white;
         &::placeholder{
             color: rgb(228, 227, 227);
         }
@@ -35,7 +35,7 @@
         text-transform: uppercase;
         font-family: 'Oswald';
         &:hover{
-            color: #c5a179;
+            color: $gold;
         }
     }
 }

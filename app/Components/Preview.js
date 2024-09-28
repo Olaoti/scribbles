@@ -34,6 +34,10 @@ function Preview() {
     const time = Math.ceil(words / wpm);
     return time
   }
+  const slugify = (title) => title.toLowerCase()
+  .replace(/[^\w\s-]/g, '')
+  .trim()
+  .replace(/\s+/g, '-');      
   const [lists, setLists]=useState()
   const[loading, setLoading] = useState(true)
  
@@ -116,7 +120,7 @@ function Preview() {
                         {list.category}
                       </h5>
                       <h2 className='title'>
-                      <Link href={`/${list.title.split(' ').join('-')}`}>{list.title}</Link></h2>
+                      <Link href={`/${slugify(list.title)}`}>{list.title}</Link></h2>
                       <div className='date-comments'>
                       <p className='date'>{formatRandomDate(list.created_at)}</p>
                         <p></p>

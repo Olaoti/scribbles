@@ -9,9 +9,9 @@ form{
         border: none;
         outline: none;
         width: 100%;
-        box-shadow: 0 0 6px 6px rgba(195, 195, 195, .12);
+        box-shadow: 0 0 6px 6px $shadow-black;
         padding: 1rem;
-        background-color: white;
+        background-color: $white;
         resize: none;
         margin:.8rem 0 1.8rem 0;
         &#radiobtn{
@@ -32,12 +32,12 @@ form{
     
     button{
         font-size: 2rem;
-        background-color: #333;
-        color: white;
+        background-color: $primary-black;
+        color: $white;
         padding: 1.2rem 2rem;
         margin: 1rem 0;
         &:hover{
-            color: #c5a179;
+            color: $gold;
             cursor: pointer;
         }
     }

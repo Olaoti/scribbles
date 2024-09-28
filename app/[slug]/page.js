@@ -27,7 +27,10 @@ function page({params}) {
 
     }
   }
-
+  const slugify = (title) => title.toLowerCase()
+  .replace(/[^\w\s-]/g, '')
+  .trim()
+  .replace(/\s+/g, '-'); 
   
   const [title, setTitle] = useState('')
   const [post, setPost] = useState('')
@@ -38,8 +41,8 @@ function page({params}) {
 
   useEffect(()=>{
    if(title != ''&&lists.length>0){
-    const newpost= lists.filter(post=>{return(post.title.split(' ').join('-').toLowerCase()==title.toLowerCase())})
-    
+    const newpost= lists.filter(post=>{return(slugify(post.title)==title)})
+    console.log(title.split(' ').join('-').toLowerCase(),title.toLowerCase())
     if(newpost.length==0){
       setDefined(0)
     }

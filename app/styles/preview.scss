@@ -20,7 +20,7 @@
         font-family: 'Oswald';
         font-weight: 300;
         &:hover{
-            color: #c5a179;
+            color: $gold;
         }
         &.date{
             &:hover{
@@ -41,8 +41,8 @@
     align-items: center;
     padding: 2rem 0;
     .info{
-        background-color: #333;
-        color: white;
+        background-color: $primary-black;
+        color: $white;
         text-transform: uppercase;
         font-family: Oswald, sans-serif;
         line-height: 4.8rem;
@@ -60,7 +60,7 @@
         padding-right: 12rem;
         text-decoration: underline;
         &:hover{
-            color: #c5a179;
+            color: $gold;
         }
     }
 }
