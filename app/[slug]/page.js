@@ -149,7 +149,7 @@ function page({params}) {
       <h4>Related Posts</h4>
     <div className='random-posts-sect'>
       {randomPosts.map((post, index) => (
-        <Link key={index} href={`/${post.title.split(' ').join('-')}`}>
+        <Link key={index} href={`/${slugify(post.title)}`}>
         <div className='box'>
            <h5>{post.title}
           </h5>
