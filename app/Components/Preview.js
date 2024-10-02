@@ -140,7 +140,7 @@ function Preview() {
                       <div className='post-info'>
                         <div className='read-time info'>Reading Time: {readingTime(list.content)} min
                         </div>
-                        <div className='show-more'><Link href={`/${list.title.split(' ').join('-')}`}>Continue Reading</Link></div>
+                        <div className='show-more'><Link href={`/${slugify(list.title)}`}>Continue Reading</Link></div>
                       </div>
                      
                 </div>
