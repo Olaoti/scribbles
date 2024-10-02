@@ -125,7 +125,7 @@ function Preview() {
                       <p className='date'>{formatRandomDate(list.created_at)}</p>
                         <p></p>
                         <span></span>
-                        {<p><Link href={`/${list.title.split(' ').join('-')}/#comments`}>{comments.filter(comment=>{return comment.post_id==list.id}).length>0?(`${comments.filter(comment=>{return comment.post_id==list.id}).length} comments`):('No comments')} </Link></p>}
+                        {<p><Link href={`/${slugify(list.title)}/#comments`}>{comments.filter(comment=>{return comment.post_id==list.id}).length>0?(`${comments.filter(comment=>{return comment.post_id==list.id}).length} comments`):('No comments')} </Link></p>}
                       </div>
                       </div>
                       <div>
