@@ -172,7 +172,7 @@ function page({params}) {
                   <div className='initial'>
                     {comment?.username.slice(0,1)}
                   </div>
-                <div>
+                <div className='comment-info'>
                   <h3>{comment.username}</h3>
                     <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
                     <p>{comment?.payload}</p>

@@ -74,11 +74,14 @@
    .comments-sect{
     .headcomments{
         gap: 1rem;
-        width: max-content;
+        width: 100%;
         .initial{
             width: 4rem;
             height: 4rem;
             font-size: 3rem;
+        }
+        .comment-info{
+            width: 100%;
         }
     }
     .childComment{
