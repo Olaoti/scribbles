@@ -1,9 +1,11 @@
 'use client'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import SearchIcon from "../../public/assets/search.svg"
 import {  useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation'
 function Navbar() {
+  const path= usePathname()
   const [inputValue, setInputValue] = useState(''); 
   const handleSearch=(e)=>{
     setInputValue(e.target.value);
@@ -32,7 +34,7 @@ function Navbar() {
       <div className='search'><SearchIcon style={{fill:'white'}} />
       <input id='search' placeholder='Search and click enter' value={inputValue} onChange={handleSearch} onKeyUp={sendSearchParam}/>
       </div>
-      <Link href='/about-me'>
+      <Link href='/about-me' className={path==='/about-me'&&'active'}>
       <div className='about-me'>About me</div>
       </Link>
     

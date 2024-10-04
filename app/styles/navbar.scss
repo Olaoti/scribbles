@@ -31,9 +31,13 @@
             color: rgb(228, 227, 227);
         }
     }
+    .active{
+        color: $gold;
+    }
     .about-me{
         text-transform: uppercase;
         font-family: 'Oswald';
+        
         &:hover{
             color: $gold;
         }
